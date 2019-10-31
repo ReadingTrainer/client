@@ -1,0 +1,39 @@
+.auth-form {
+  width: 90%;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #6bbdfa;
+  border-radius: 5px;
+  margin-top: 2rem;
+
+  background-color: #c7d9eef9;
+}
+.login-header {
+  border-bottom: 1px solid #6bbdfa;
+  margin-bottom: 10px;
+  display: flex;
+ 
+  justify-content: center;
+}
+.login-footer {
+  border-top: 1px solid #6bbdfa;
+  margin-top: 10px;
+  display: flex;
+  flex-flow: row;
+ 
+}
+.texto{
+  color: #fff;
+}
+
+.login-footer a {
+  margin: auto;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+@media (min-width: 768px) {
+  .auth-form {
+    width: 30rem;
+  }
+}
