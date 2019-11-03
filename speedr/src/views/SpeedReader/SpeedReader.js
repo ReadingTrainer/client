@@ -1,22 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
+import { getTexts } from "../../store/actions/textsActions";
+import { withStyles } from "@material-ui/styles";
+import PropTypes from "prop-types";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { withStyles } from "@material-ui/styles";
-import PropTypes from "prop-types";
 
 const styles = theme => ({
   card: {
@@ -46,6 +43,10 @@ class SpeedReader extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    this.props.getTexts();
+  };
+
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
   };
@@ -54,25 +55,6 @@ class SpeedReader extends React.Component {
     const { classes } = this.props;
     return (
       <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              R
-            </Avatar>
-          }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
-        />
-        <CardMedia
-          className={classes.media}
-          image="/static/images/cards/paella.jpg"
-          title="Paella dish"
-        />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             This impressive paella is a perfect party dish and a fun meal to
@@ -140,11 +122,10 @@ SpeedReader.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  loadingUser: state.authentication.loadingUser,
-  loginError: state.authentication.loginError
+  loadingUser: state.texts.texts
 });
 
 export default connect(
   mapStateToProps,
-  null
+  { getTexts }
 )(withStyles(styles)(SpeedReader));
