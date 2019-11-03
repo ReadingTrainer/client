@@ -16,7 +16,7 @@ function textsReducer(state = initialState, action) {
     case types.GET_TEXT:
       return {
         ...state,
-        text: action.payload
+        text: action.payload.text
       };
     default:
       return state;

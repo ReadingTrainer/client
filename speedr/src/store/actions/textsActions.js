@@ -17,7 +17,6 @@ export const getTexts = () => dispatch => {
   axios
     .get(`${appURL}/texts/${userId}`)
     .then(response => {
-      debugger;
       dispatch(genericAction(GET_TEXTS, response.data));
     })
     .catch(error => {
@@ -35,10 +34,8 @@ export const createText = (name, text) => dispatch => {
   axios
     .post(`${appURL}/texts`, textBody)
     .then(response => {
-      debugger;
 
       return axios.get(`${appURL}/texts/${userId}`).then(response => {
-        debugger;
         dispatch(genericAction(GET_TEXTS, response.data));
       });
       // dispatch(genericAction(LOGIN, userId));
@@ -52,8 +49,7 @@ export const getOneText = textId => dispatch => {
   axios
     .get(`${appURL}/texts/text/${textId}`)
     .then(response => {
-      debugger;
-      dispatch(genericAction(GET_TEXT, response.data));
+      dispatch(genericAction(GET_TEXT, response.data.text));
     })
     .catch(error => {
       debugger;
@@ -64,10 +60,8 @@ export const deleteText = textId => dispatch => {
   axios
     .delete(`${appURL}/texts/text/${textId}`)
     .then(response => {
-      debugger;
 
       return axios.get(`${appURL}/texts/${userId}`).then(response => {
-        debugger;
         dispatch(genericAction(GET_TEXTS, response.data));
       });
     })

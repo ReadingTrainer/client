@@ -47,7 +47,16 @@ class SpeedReader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false
+      expanded: false,
+      number: 240,
+      textBackgroundColor: "",
+      textFontSize: "",
+      textHeight: "",
+      textWidth: "",
+      textColor: "",
+      pause: false,
+      pressedPlay: false,
+      indexOfCurrentWord: 0
     };
   }
 
@@ -57,15 +66,28 @@ class SpeedReader extends React.Component {
 
   render() {
     const { classes } = this.props;
+
+    const styleTextSection = {
+      color: this.state.textColor,
+      background: this.state.textBackgroundColor,
+      fontSize: `${this.state.textFontSize}px`,
+      height: `${this.state.textHeight}px`,
+      width: `${this.state.textWidth}px`
+    };
     return (
       <StyledSpeedReader>
         <Card className={classes.card}>
           <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-              This impressive paella is a perfect party dish and a fun meal to
-              cook together with your guests. Add 1 cup of frozen peas along
-              with the mussels, if you like.
-            </Typography>
+            {/* <Typography variant="body2" color="textSecondary" component="p">
+             
+            </Typography> */}
+            <div className="word-section" style={styleTextSection}>
+              <h1 className="text">
+                {this.props.text
+                  ? this.props.text
+                  : "Create or choose a text to start your training"}
+              </h1>
+            </div>
           </CardContent>
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
@@ -130,7 +152,7 @@ SpeedReader.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  texts: state.texts.texts
+  text: state.texts.text
 });
 
 export default connect(
