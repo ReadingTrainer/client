@@ -1,11 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import TextAdder from "./TextAdder";
-import {
-  showTextAfterPause,
-  makePause,
-  showNextWord
-} from "../../store/actions/textsActions";
+import { showNextWord } from "../../store/actions/textsActions";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -15,8 +11,6 @@ import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import { red } from "@material-ui/core/colors";
-// import FavoriteIcon from "@material-ui/icons/Favorite";
-// import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styled from "styled-components";
 
@@ -117,11 +111,11 @@ class SpeedReader extends React.Component {
             </div>
           </CardContent>
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <i onClick={this.start} className="fa fa-play" />
+            <IconButton onClick={this.start} aria-label="add to favorites">
+              <i className="fa fa-play" />
             </IconButton>
-            <IconButton aria-label="share">
-              <i className="fa fa-pause" onClick={this.pause} />
+            <IconButton onClick={this.pause} aria-label="share">
+              <i className="fa fa-pause" />
             </IconButton>
             <IconButton
               className={clsx(classes.expand, {
@@ -218,5 +212,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { showTextAfterPause, makePause, showNextWord }
+  { showNextWord }
 )(withStyles(styles)(SpeedReader));
