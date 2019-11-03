@@ -19,6 +19,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { applyMiddleware, createStore } from "redux";
+import { Provider } from "react-redux";
+import logger from "redux-logger";
+import thunk from "redux-thunk";
+import rootReducer from "./store/reducers";
 
 // core components
 import Admin from "layouts/Admin.js";
@@ -29,14 +34,18 @@ import "assets/css/material-dashboard-react.css?v=1.8.0";
 
 const hist = createBrowserHistory();
 
+const store = createStore(rootReducer, applyMiddleware(logger, thunk));
+
 ReactDOM.render(
-  <Router history={hist}>
-    <Switch>
-      <Route path="/sign_in" component={SignIn} />
-      <Route path="/sign_up" component={SignUp} />
-      <Route path="/admin" component={Admin} />
-      <Redirect from="/" to="/sign_up" />
-    </Switch>
-  </Router>,
+  <Provider store={store}>
+    <Router history={hist}>
+      <Switch>
+        <Route path="/sign_in" component={SignIn} />
+        <Route path="/sign_up" component={SignUp} />
+        <Route path="/admin" component={Admin} />
+        <Redirect from="/" to="/sign_up" />
+      </Switch>
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );

@@ -14,7 +14,6 @@ import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -36,7 +35,7 @@ const styles = theme => ({
     alignItems: "center"
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%" // Fix IE 11 issue.
   }
 });
 
