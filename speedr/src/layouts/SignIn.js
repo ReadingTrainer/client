@@ -13,6 +13,8 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { doSignIn } from "../store/actions/authenticationActions";
 
 function Copyright() {
   return (
@@ -47,6 +49,20 @@ class SignIn extends React.Component {
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
+    });
+  };
+
+  signIn = () => {
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    this.props.doSignIn(user, this.props.history);
+
+    this.setState({
+      email: "",
+      password: ""
     });
   };
 
@@ -94,7 +110,8 @@ class SignIn extends React.Component {
               label="Remember me"
             />
             <Button
-              type="submit"
+              // type="submit"
+              onClick={this.signIn}
               fullWidth
               variant="contained"
               color="primary"
@@ -128,4 +145,12 @@ SignIn.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SignIn);
+const mapStateToProps = state => ({
+  loadingUser: state.authentication.loadingUser,
+  loginError: state.authentication.loginError
+});
+
+export default connect(
+  mapStateToProps,
+  { doSignIn }
+)(withStyles(styles)(SignIn));

@@ -60,7 +60,7 @@ class SignUp extends React.Component {
       password: this.state.password
     };
 
-    this.props.doSignUp(newUser);
+    this.props.doSignUp(newUser, this.props.history);
 
     this.setState({
       username: "",

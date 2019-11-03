@@ -1,7 +1,7 @@
 import axios from "axios";
 import { axiosWithAuth } from "../axiosWithAuth";
 
-const appURL = process.env.REACT_APP_BASE_URL;
+const appURL = "http://localhost:5000";
 
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
@@ -16,7 +16,7 @@ export const genericAction = (type, payload) => ({
   payload
 });
 
-export const doLogIn = (user, history) => dispatch => {
+export const doSignIn = (user, history) => dispatch => {
   dispatch(genericAction(LOADING_USER, true));
   axios
     .post(`${appURL}/auth/login`, user)
@@ -25,7 +25,7 @@ export const doLogIn = (user, history) => dispatch => {
       dispatch(genericAction(LOGIN, userId));
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
-      history.push("/workouts");
+      history.push("/admin");
     })
     .catch(error => {
       let { errorMessage } = error.response.data;
@@ -43,9 +43,10 @@ export const doSignUp = (user, history) => dispatch => {
       dispatch(genericAction(LOGIN, user.id));
       localStorage.setItem("token", token);
       localStorage.setItem("userId", user.id);
-      history.push("/workouts");
+      history.push("/admin");
     })
     .catch(error => {
+      debugger
       let { errorMessage } = error.response.data;
       dispatch(genericAction(SIGNUP_ERROR, errorMessage));
     })
