@@ -13,13 +13,15 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { doSignUp } from "../store/actions/authenticationActions";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Speedr
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -48,6 +50,22 @@ class SignUp extends React.Component {
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
+    });
+  };
+
+  signUp = () => {
+    const newUser = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    this.props.doSignUp(newUser);
+
+    this.setState({
+      username: "",
+      email: "",
+      password: ""
     });
   };
 
@@ -108,7 +126,8 @@ class SignUp extends React.Component {
               label="Remember me"
             />
             <Button
-              type="submit"
+              // type="submit"
+              onClick={this.signUp}
               fullWidth
               variant="contained"
               color="primary"
@@ -123,8 +142,8 @@ class SignUp extends React.Component {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/sign_in" variant="body2">
+                  {"Do you have an account? Sign in"}
                 </Link>
               </Grid>
             </Grid>
@@ -142,4 +161,12 @@ SignUp.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SignUp);
+const mapStateToProps = state => ({
+  loadingUser: state.authentication.loadingUser,
+  loginError: state.authentication.loginError
+});
+
+export default connect(
+  mapStateToProps,
+  { doSignUp }
+)(withStyles(styles)(SignUp));

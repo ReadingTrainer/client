@@ -19,7 +19,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Speedr
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -29,13 +29,9 @@ function Copyright() {
 
 const styles = theme => ({
   paper: {
-    marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
-  },
-  form: {
-    width: "100%" // Fix IE 11 issue.
   }
 });
 
@@ -113,7 +109,7 @@ class SignIn extends React.Component {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/sign_up" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
