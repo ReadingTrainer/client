@@ -1,7 +1,8 @@
 import * as types from "../actions/textsActions";
 
 const initialState = {
-  texts: null
+  texts: null,
+  text: null
 };
 
 function textsReducer(state = initialState, action) {
@@ -10,6 +11,12 @@ function textsReducer(state = initialState, action) {
       return {
         ...state,
         texts: action.payload
+      };
+
+    case types.GET_TEXT:
+      return {
+        ...state,
+        text: action.payload
       };
     default:
       return state;

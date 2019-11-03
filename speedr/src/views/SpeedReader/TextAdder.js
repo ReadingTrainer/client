@@ -1,16 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-// import {
-//   fetchTexts,
-//   addText,
-//   chooseThisText,
-//   deleteText
-// } from "../../../Store/actions";
 import {
   getTexts,
   createText,
-  getOneText
+  getOneText,
+  deleteText
 } from "../../store/actions/textsActions";
+import styled from "styled-components";
+
+const StyledTextAdder = styled.div``;
 
 class TextAdder extends React.Component {
   constructor(props) {
@@ -54,7 +52,7 @@ class TextAdder extends React.Component {
                 <div key={index} className="text">
                   <div className="close">
                     <i
-                      // onClick={() => this.props.deleteText(item.id)}
+                      onClick={() => this.props.deleteText(item.id)}
                       className="fa fa-window-close"
                     />
                   </div>
@@ -93,5 +91,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getTexts, createText, getOneText }
+  { getTexts, createText, getOneText, deleteText }
 )(TextAdder);
