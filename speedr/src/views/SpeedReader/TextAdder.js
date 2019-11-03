@@ -17,6 +17,7 @@ import Typography from "@material-ui/core/Typography";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { withStyles } from "@material-ui/styles";
 import { red } from "@material-ui/core/colors";
+import Button from '@material-ui/core/Button';
 
 import PropTypes from "prop-types";
 const StyledTextAdder = styled.div``;
@@ -94,13 +95,17 @@ class TextAdder extends React.Component {
                         // <IconButton aria-label="settings">
                         //   <MoreVertIcon />
                         // </IconButton>
-
-                        <div className="close">
-                          <i
-                            onClick={() => this.props.deleteText(item.id)}
-                            className="fa fa-window-close"
-                          />
-                        </div>
+                        <Button
+                          variant="outlined"
+                          onClick={this.props.handleClick}
+                        >
+                          <div className="close">
+                            <i
+                              onClick={() => this.props.deleteText(item.id)}
+                              className="fa fa-window-close"
+                            />
+                          </div>
+                        </Button>
                       }
                       title={item.name}
                       subheader={item.date}
