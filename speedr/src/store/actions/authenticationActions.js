@@ -21,6 +21,7 @@ export const doSignIn = (user, history) => dispatch => {
   axios
     .post(`${appURL}/auth/login`, user)
     .then(response => {
+      debugger
       const { token, user } = response.data;
       dispatch(genericAction(LOGIN, user));
       localStorage.setItem("token", token);
@@ -28,6 +29,7 @@ export const doSignIn = (user, history) => dispatch => {
       history.push("/admin");
     })
     .catch(error => {
+      debugger
       let { errorMessage } = error.response.data;
       dispatch(genericAction(LOGIN_ERROR, errorMessage));
     })
