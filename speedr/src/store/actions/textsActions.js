@@ -5,6 +5,9 @@ const appURL = "http://localhost:5000";
 
 export const GET_TEXTS = "GET_TEXTS";
 export const GET_TEXT = "GET_TEXT";
+export const SHOW_NEXT_WORD = "SHOW_NEXT_WORD";
+export const MAKE_PAUSE = "MAKE_PAUSE";
+export const SHOW_TEXT_AFTER_PAUSE = "SHOW_TEXT_AFTER_PAUSE";
 
 export const genericAction = (type, payload) => ({
   type,
@@ -89,4 +92,20 @@ export const deleteText = textId => dispatch => {
     .catch(error => {
       debugger;
     });
+};
+
+export const showNextWord = () => {
+  return genericAction(SHOW_NEXT_WORD);
+};
+
+export const makePause = (currentWord, indexOfCurrentWord) => {
+  return {
+    type: MAKE_PAUSE,
+    currentWord: currentWord,
+    indexOfCurrentWord: indexOfCurrentWord
+  };
+};
+
+export const showTextAfterPause = () => {
+  return { type: SHOW_TEXT_AFTER_PAUSE };
 };

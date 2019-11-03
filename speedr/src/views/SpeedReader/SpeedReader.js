@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import TextAdder from "./TextAdder";
 import {
-  getTexts,
-  createText,
-  getOneText
+  showTextAfterPause,
+  makePause,
+  showNextWord
 } from "../../store/actions/textsActions";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
@@ -14,7 +14,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 // import FavoriteIcon from "@material-ui/icons/Favorite";
 // import ShareIcon from "@material-ui/icons/Share";
@@ -49,16 +48,41 @@ class SpeedReader extends React.Component {
     this.state = {
       expanded: false,
       number: 240,
-      textBackgroundColor: "",
+      textBackgroundColor: "grey",
       textFontSize: "",
       textHeight: "",
       textWidth: "",
-      textColor: "",
-      pause: false,
-      pressedPlay: false,
-      indexOfCurrentWord: 0
+      textColor: "white",
+      interval: null
     };
   }
+
+  changeHandler = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  start = () => {
+    const wordsPerSecond = this.state.number / 60;
+    const resultForSetInterval = 1000 / wordsPerSecond;
+
+    const intervalVariable = setInterval(this.timer, resultForSetInterval);
+
+    this.setState({ interval: intervalVariable });
+  };
+
+  timer = () => {
+    if (this.props.currentIndexOfWord + 1 !== this.props.text.length) {
+      this.props.showNextWord();
+    } else {
+      clearInterval(this.state.interval);
+    }
+  };
+
+  pause = () => {
+    clearInterval(this.state.interval);
+  };
 
   changeHandler = e => {
     this.setState({
@@ -83,32 +107,21 @@ class SpeedReader extends React.Component {
     return (
       <StyledSpeedReader>
         <Card className={classes.card}>
-          <CardContent>
-            {/* <Typography variant="body2" color="textSecondary" component="p">
-             
-            </Typography> */}
-            <div className="word-section" style={styleTextSection}>
+          <CardContent style={styleTextSection}>
+            <div className="word-section">
               <h1 className="text">
-                {this.props.text
-                  ? this.props.text
+                {this.props.currentWord
+                  ? this.props.currentWord
                   : "Create or choose a text to start your training"}
               </h1>
             </div>
           </CardContent>
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
-              {/* <FavoriteIcon /> */}
-              <i
-                // onClick={this.start}
-                className="fa fa-play"
-              />
+              <i onClick={this.start} className="fa fa-play" />
             </IconButton>
             <IconButton aria-label="share">
-              <i
-                className="fa fa-pause"
-                //  onClick={this.pause}
-              />
-              {/* <ShareIcon /> */}
+              <i className="fa fa-pause" onClick={this.pause} />
             </IconButton>
             <IconButton
               className={clsx(classes.expand, {
@@ -198,10 +211,12 @@ SpeedReader.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  text: state.texts.text
+  currentWord: state.texts.currentWord,
+  text: state.texts.text,
+  currentIndexOfWord: state.texts.currentIndexOfWord
 });
 
 export default connect(
   mapStateToProps,
-  null
+  { showTextAfterPause, makePause, showNextWord }
 )(withStyles(styles)(SpeedReader));
