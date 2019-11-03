@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getTexts, createText, getOneText } from "../../store/actions/textsActions";
+import TextAdder from "./TextAdder";
+import {
+  getTexts,
+  createText,
+  getOneText
+} from "../../store/actions/textsActions";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -39,13 +44,9 @@ class SpeedReader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false
+      expanded: false,
     };
   }
-
-  componentDidMount = () => {
-    this.props.getTexts();
-  };
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
@@ -122,10 +123,10 @@ SpeedReader.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  loadingUser: state.texts.texts
+  texts: state.texts.texts
 });
 
 export default connect(
   mapStateToProps,
-  { getTexts, createText, getOneText }
+  null
 )(withStyles(styles)(SpeedReader));

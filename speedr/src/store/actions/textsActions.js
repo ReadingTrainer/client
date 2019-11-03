@@ -11,12 +11,13 @@ export const genericAction = (type, payload) => ({
 });
 
 export const getTexts = () => dispatch => {
-  const user = { userId: localStorage.getItem("userId") };
+  const userId = localStorage.getItem("userId");
+
   axios
-    .get(`${appURL}/texts`, user)
+    .get(`${appURL}/texts/${userId}`)
     .then(response => {
       debugger;
-      // dispatch(genericAction(LOGIN, userId));
+      dispatch(genericAction(GET_TEXTS, response.data));
     })
     .catch(error => {
       debugger;
@@ -24,7 +25,11 @@ export const getTexts = () => dispatch => {
 };
 
 export const createText = (name, text) => dispatch => {
-  const textBody = { name, text };
+  const textBody = {
+    user_id: localStorage.getItem("userId"),
+    name,
+    text
+  };
 
   axios
     .post(`${appURL}/texts`, textBody)
@@ -39,7 +44,7 @@ export const createText = (name, text) => dispatch => {
 
 export const getOneText = textId => dispatch => {
   axios
-    .get(`${appURL}/texts/${textId}`)
+    .get(`${appURL}/texts/text/${textId}`)
     .then(response => {
       debugger;
       // dispatch(genericAction(LOGIN, userId));

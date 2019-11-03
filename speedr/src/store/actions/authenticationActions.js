@@ -21,10 +21,10 @@ export const doSignIn = (user, history) => dispatch => {
   axios
     .post(`${appURL}/auth/login`, user)
     .then(response => {
-      const { token, userId } = response.data;
-      dispatch(genericAction(LOGIN, userId));
+      const { token, user } = response.data;
+      dispatch(genericAction(LOGIN, user));
       localStorage.setItem("token", token);
-      localStorage.setItem("userId", userId);
+      localStorage.setItem("userId", user);
       history.push("/admin");
     })
     .catch(error => {
@@ -39,10 +39,11 @@ export const doSignUp = (user, history) => dispatch => {
   axios
     .post(`${appURL}/auth/signup`, user)
     .then(response => {
+      debugger
       const { token, user } = response.data;
-      dispatch(genericAction(LOGIN, user.id));
+      dispatch(genericAction(LOGIN, user));
       localStorage.setItem("token", token);
-      localStorage.setItem("userId", user.id);
+      localStorage.setItem("userId", user);
       history.push("/admin");
     })
     .catch(error => {

@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import authentication from "./authentication";
+import texts from "./texts";
 
 const appReducer = combineReducers({
-  authentication
+  authentication,
+  texts
 });
 
 const rootReducer = (state, action) => {
