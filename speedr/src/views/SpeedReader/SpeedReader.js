@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getTexts } from "../../store/actions/textsActions";
+import { getTexts, createText, getOneText } from "../../store/actions/textsActions";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -127,5 +127,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getTexts }
+  { getTexts, createText, getOneText }
 )(withStyles(styles)(SpeedReader));
