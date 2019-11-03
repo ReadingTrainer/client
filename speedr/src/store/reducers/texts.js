@@ -38,21 +38,6 @@ function textsReducer(state = initialState, action) {
         currentIndexOfWord: currentIndexOfWord
       };
 
-    case types.MAKE_PAUSE:
-      const onlyTheTextAfterTheCurrentWord = state.text.slice(
-        action.indexOfCurrentWord,
-        state.text.length
-      );
-
-      return {
-        ...state,
-        currentText: [action.currentWord],
-        textIfPause: onlyTheTextAfterTheCurrentWord
-      };
-
-    case types.SHOW_TEXT_AFTER_PAUSE:
-      return { ...state, currentText: state.textIfPause };
-
     default:
       return state;
   }

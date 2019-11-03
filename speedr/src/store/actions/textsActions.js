@@ -97,15 +97,3 @@ export const deleteText = textId => dispatch => {
 export const showNextWord = () => {
   return genericAction(SHOW_NEXT_WORD);
 };
-
-export const makePause = (currentWord, indexOfCurrentWord) => {
-  return {
-    type: MAKE_PAUSE,
-    currentWord: currentWord,
-    indexOfCurrentWord: indexOfCurrentWord
-  };
-};
-
-export const showTextAfterPause = () => {
-  return { type: SHOW_TEXT_AFTER_PAUSE };
-};
