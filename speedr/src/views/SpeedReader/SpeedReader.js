@@ -58,7 +58,7 @@ class SpeedReader extends React.Component {
     this.state = {
       expanded: false,
       number: 240,
-      textBackgroundColor: "grey",
+      textBackgroundColor: "black",
       textFontSize: "",
       textHeight: "",
       textWidth: "",
@@ -105,6 +105,14 @@ class SpeedReader extends React.Component {
       text: "",
       name: "",
       succesMessage: true
+    });
+  };
+
+  chooseText = textId => {
+    this.props.getOneText(textId);
+
+    this.setState({
+      infoMessage: true
     });
   };
 
@@ -237,6 +245,7 @@ class SpeedReader extends React.Component {
           text={this.state.text}
           handleChange={this.handleChange}
           addText={this.addText}
+          chooseText={this.chooseText}
         />
         <Snackbar
           anchorOrigin={{
@@ -265,7 +274,7 @@ class SpeedReader extends React.Component {
           <MySnackbarContentWrapper
             variant="info"
             className={classes.margin}
-            message="This is an information message!"
+            message="You text is ready to read!"
           />
         </Snackbar>
       </StyledSpeedReader>
@@ -288,11 +297,7 @@ export default connect(
   { showNextWord, createText, getOneText, deleteText }
 )(withStyles(styles)(SpeedReader));
 
-
-
-
-
-//////////////// MAKE COMPONENT OUTSIDE 
+//////////////// MAKE COMPONENT OUTSIDE
 const variantIcon = {
   success: CheckCircleIcon,
   warning: WarningIcon,

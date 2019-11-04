@@ -19,7 +19,17 @@ import { withStyles } from "@material-ui/styles";
 import { red } from "@material-ui/core/colors";
 
 import PropTypes from "prop-types";
-const StyledTextAdder = styled.div``;
+
+const StyledTextAdder = styled.div`
+.all-texts {
+ display: flex;
+ flex-wrap: wrap;
+}
+
+.text-card {
+ width: 20%;
+}
+`;
 
 const styles = theme => ({
   card: {
@@ -42,35 +52,9 @@ const styles = theme => ({
 });
 
 class TextAdder extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     text: "",
-  //     name: ""
-  //   };
-  // }
 
   componentDidMount = () => {
     this.props.getTexts();
-  };
-
-  // changeHandler = e => {
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   });
-  // };
-
-  // addText = () => {
-  //   this.props.createText(this.state.name, this.state.text);
-
-  //   this.setState({
-  //     text: "",
-  //     name: ""
-  //   });
-  // };
-
-  chooseText = textId => {
-    this.props.getOneText(textId);
   };
 
   render() {
@@ -82,18 +66,10 @@ class TextAdder extends React.Component {
           <div className="all-texts">
             {this.props.texts.map((item, index) => {
               return (
-                <div key={item.id} onClick={() => this.chooseText(item.id)}>
-                  <Card className={classes.card}>
+                <div className="text-card" key={item.id} onClick={() => this.props.chooseText(item.id)}>
+                  <Card className={classes.card} >
                     <CardHeader
-                      // avatar={
-                      //   <Avatar aria-label="recipe" className={classes.avatar}>
-                      //     R
-                      //   </Avatar>
-                      // }
                       action={
-                        // <IconButton aria-label="settings">
-                        //   <MoreVertIcon />
-                        // </IconButton>
                         <IconButton
                           onClick={() => this.props.handleDeletion(item.id)}
                           aria-label="add to favorites"
@@ -107,7 +83,6 @@ class TextAdder extends React.Component {
                       subheader={item.date}
                     />
                     <CardMedia
-                      // className={classes.media}
                       image="/static/images/cards/paella.jpg"
                       title="Paella dish"
                     />
