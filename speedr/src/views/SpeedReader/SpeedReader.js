@@ -1,7 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import TextAdder from "./TextAdder";
-import { showNextWord } from "../../store/actions/textsActions";
+import {
+  showNextWord,
+  createText,
+  getOneText,
+  deleteText
+} from "../../store/actions/textsActions";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -24,7 +29,6 @@ import WarningIcon from "@material-ui/icons/Warning";
 import { makeStyles } from "@material-ui/core/styles";
 //// END NEW ADDED
 import styled from "styled-components";
-
 
 const StyledSpeedReader = styled.div``;
 
@@ -60,15 +64,11 @@ class SpeedReader extends React.Component {
       textWidth: "",
       textColor: "white",
       interval: null,
-      succesMessage: false
+      succesMessage: false,
+      text: "",
+      name: ""
     };
   }
-
-  changeHandler = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
 
   start = () => {
     const wordsPerSecond = this.state.number / 60;
@@ -91,9 +91,19 @@ class SpeedReader extends React.Component {
     clearInterval(this.state.interval);
   };
 
-  changeHandler = e => {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
+    });
+  };
+
+  addText = () => {
+    this.props.createText(this.state.name, this.state.text);
+
+    this.setState({
+      text: "",
+      name: "",
+      succesMessage: true
     });
   };
 
@@ -101,7 +111,8 @@ class SpeedReader extends React.Component {
     this.setState({ expanded: !this.state.expanded });
   };
 
-  handleClick = () => {
+  handleDeletion = textId => {
+    this.props.deleteText(textId);
     this.setState({ succesMessage: true });
   };
 
@@ -161,7 +172,7 @@ class SpeedReader extends React.Component {
                   type="number"
                   name="number"
                   value={this.state.number}
-                  onChange={this.changeHandler}
+                  onChange={this.handleChange}
                   placeholder="number"
                   min="60"
                 />
@@ -172,7 +183,7 @@ class SpeedReader extends React.Component {
                   type="text"
                   name="textColor"
                   value={this.state.textColor}
-                  onChange={this.changeHandler}
+                  onChange={this.handleChange}
                   placeholder="Text Color"
                 />
               </div>
@@ -182,7 +193,7 @@ class SpeedReader extends React.Component {
                   type="text"
                   name="textBackgroundColor"
                   value={this.state.textBackgroundColor}
-                  onChange={this.changeHandler}
+                  onChange={this.handleChange}
                   placeholder="Background Color"
                 />
               </div>
@@ -192,7 +203,7 @@ class SpeedReader extends React.Component {
                   type="number"
                   name="textFontSize"
                   value={this.state.textFontSize}
-                  onChange={this.changeHandler}
+                  onChange={this.handleChange}
                   placeholder="Fontsize"
                 />
               </div>
@@ -202,7 +213,7 @@ class SpeedReader extends React.Component {
                   type="number"
                   name="textHeight"
                   value={this.state.textHeight}
-                  onChange={this.changeHandler}
+                  onChange={this.handleChange}
                   placeholder="Height"
                 />
               </div>
@@ -212,18 +223,24 @@ class SpeedReader extends React.Component {
                   type="number"
                   name="textWidth"
                   value={this.state.textWidth}
-                  onChange={this.changeHandler}
+                  onChange={this.handleChange}
                   placeholder="Width"
                 />
               </div>
             </div>
           </Collapse>
         </Card>
-        <TextAdder handleClick={this.handleClick} />
+        <TextAdder
+          handleDeletion={this.handleDeletion}
+          name={this.state.name}
+          text={this.state.text}
+          handleChange={this.handleChange}
+          addText={this.addText}
+        />
         <Snackbar
           anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left"
+            vertical: "top",
+            horizontal: "right"
           }}
           open={this.state.succesMessage}
           autoHideDuration={6000}
@@ -232,7 +249,7 @@ class SpeedReader extends React.Component {
           <MySnackbarContentWrapper
             onClose={this.handleClose}
             variant="success"
-            message="This is a success message!"
+            message={"Your action was successful"}
           />
         </Snackbar>
       </StyledSpeedReader>
@@ -252,9 +269,8 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { showNextWord }
+  { showNextWord, createText, getOneText, deleteText }
 )(withStyles(styles)(SpeedReader));
-
 
 const variantIcon = {
   success: CheckCircleIcon,

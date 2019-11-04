@@ -11,13 +11,12 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-import Avatar from "@material-ui/core/Avatar";
+// import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+// import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { withStyles } from "@material-ui/styles";
 import { red } from "@material-ui/core/colors";
-import Button from '@material-ui/core/Button';
 
 import PropTypes from "prop-types";
 const StyledTextAdder = styled.div``;
@@ -43,32 +42,32 @@ const styles = theme => ({
 });
 
 class TextAdder extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: "",
-      name: ""
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     text: "",
+  //     name: ""
+  //   };
+  // }
 
   componentDidMount = () => {
     this.props.getTexts();
   };
 
-  changeHandler = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
+  // changeHandler = e => {
+  //   this.setState({
+  //     [e.target.name]: e.target.value
+  //   });
+  // };
 
-  addText = () => {
-    this.props.createText(this.state.name, this.state.text);
+  // addText = () => {
+  //   this.props.createText(this.state.name, this.state.text);
 
-    this.setState({
-      text: "",
-      name: ""
-    });
-  };
+  //   this.setState({
+  //     text: "",
+  //     name: ""
+  //   });
+  // };
 
   chooseText = textId => {
     this.props.getOneText(textId);
@@ -95,17 +94,14 @@ class TextAdder extends React.Component {
                         // <IconButton aria-label="settings">
                         //   <MoreVertIcon />
                         // </IconButton>
-                        <Button
-                          variant="outlined"
-                          onClick={this.props.handleClick}
+                        <IconButton
+                          onClick={() => this.props.handleDeletion(item.id)}
+                          aria-label="add to favorites"
                         >
                           <div className="close">
-                            <i
-                              onClick={() => this.props.deleteText(item.id)}
-                              className="fa fa-window-close"
-                            />
+                            <i className="fa fa-window-close" />
                           </div>
-                        </Button>
+                        </IconButton>
                       }
                       title={item.name}
                       subheader={item.date}
@@ -128,36 +124,27 @@ class TextAdder extends React.Component {
                     </CardContent>
                   </Card>
                 </div>
-                //                                         <div key={index} className="text">
-                //   <div className="close">
-                //     <i
-                //       onClick={() => this.props.deleteText(item.id)}
-                //       className="fa fa-window-close"
-                //     />
-                //   </div>
-                //   <p onClick={() => this.chooseText(item.id)}>{item.name}</p>
-                // </div>
               );
             })}
           </div>
         ) : null}
-        <h1>Add text to train your reading skills !</h1>
+        <h1>Add a text to train your reading skills !</h1>
         <div className="input-plus">
           <input
             type="text"
             name="name"
-            value={this.state.name}
-            onChange={this.changeHandler}
+            value={this.props.name}
+            onChange={this.props.handleChange}
             placeholder="Name"
           />
           <input
             type="text"
             name="text"
-            value={this.state.text}
-            onChange={this.changeHandler}
+            value={this.props.text}
+            onChange={this.props.handleChange}
             placeholder="Text"
           />
-          <i onClick={this.addText} className="fa fa-plus-square" />
+          <i onClick={this.props.addText} className="fa fa-plus-square" />
         </div>
       </StyledTextAdder>
     );
