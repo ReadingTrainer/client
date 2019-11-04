@@ -7,7 +7,9 @@ const initialState = {
   texts: null,
   text: null,
   currentWord: null,
-  currentIndexOfWord: 0
+  currentIndexOfWord: 0,
+  currentIdOfText: null,
+  currentIdOfSession: null
 };
 
 function textsReducer(state = initialState, action) {
@@ -19,13 +21,15 @@ function textsReducer(state = initialState, action) {
       };
 
     case types.GET_TEXT:
-      const splittedText = action.payload.text.split(" ");
-
+      const splittedText = action.payload.text.text.split(" ");
+      const y = action.payload.text.id
+      debugger
       return {
         ...state,
         text: splittedText,
         currentWord: splittedText[0],
-        currentIndexOfWord: 0
+        currentIndexOfWord: 0,
+        currentIdOfText: action.payload.text.id
       };
 
     case types.SHOW_NEXT_WORD:
@@ -37,6 +41,13 @@ function textsReducer(state = initialState, action) {
         currentWord: nextWord,
         currentIndexOfWord: currentIndexOfWord
       };
+
+      case types.START_TEXT_SESSION:
+  
+        return {
+          ...state,
+          currentIdOfSession: action.payload
+        };
 
     default:
       return state;

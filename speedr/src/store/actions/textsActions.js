@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { axiosWithAuth } from "../axiosWithAuth";
+import { axiosWithAuth } from "store/axiosWithAuth";
 
 const appURL = "http://localhost:5000";
 
@@ -8,6 +8,8 @@ export const GET_TEXT = "GET_TEXT";
 export const SHOW_NEXT_WORD = "SHOW_NEXT_WORD";
 export const MAKE_PAUSE = "MAKE_PAUSE";
 export const SHOW_TEXT_AFTER_PAUSE = "SHOW_TEXT_AFTER_PAUSE";
+export const START_TEXT_SESSION = "START_TEXT_SESSION";
+export const END_TEXT_SESSION = "END_TEXT_SESSION";
 
 export const genericAction = (type, payload) => ({
   type,
@@ -76,7 +78,7 @@ export const getOneText = textId => dispatch => {
   axios
     .get(`${appURL}/texts/text/${textId}`)
     .then(response => {
-      dispatch(genericAction(GET_TEXT, response.data.text));
+      dispatch(genericAction(GET_TEXT, response.data));
     })
     .catch(error => {
       debugger;
@@ -100,4 +102,35 @@ export const deleteText = textId => dispatch => {
 
 export const showNextWord = () => {
   return genericAction(SHOW_NEXT_WORD);
+};
+
+export const startTextSession = textId => dispatch => {
+  const userId = localStorage.getItem("userId");
+  
+  axiosWithAuth().post(`${appURL}/texts/${textId}/start`, { userId })
+    .then(response => {
+      debugger
+      debugger
+      dispatch(genericAction(START_TEXT_SESSION, response.data.sessionId));
+    })
+    .catch(error => {
+      debugger;
+    });
+};
+
+export const endTextSession = (textId, session_id) => dispatch => {
+  debugger
+  const userId = localStorage.getItem("userId");
+  
+  axiosWithAuth().post(`${appURL}/texts/${textId}/end`, {session_id})
+    .then(response => {
+      debugger
+      // dispatch(genericAction(GET_TEXTS, response.data));
+      return axiosWithAuth().get(`${appURL}/texts/history/${userId}`).then(res => {
+        debugger
+      })
+    })
+    .catch(error => {
+      debugger;
+    });
 };

@@ -38,7 +38,7 @@ export default function Footer(props) {
             >
               Speedr
             </a>
-            , made with from Berlin
+            , made with Love from Berlin
           </span>
         </p>
       </div>

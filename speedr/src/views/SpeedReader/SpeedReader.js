@@ -5,7 +5,9 @@ import {
   showNextWord,
   createText,
   getOneText,
-  deleteText
+  deleteText,
+  startTextSession,
+  endTextSession
 } from "../../store/actions/textsActions";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
@@ -72,6 +74,7 @@ class SpeedReader extends React.Component {
   }
 
   start = () => {
+    this.props.startTextSession(this.props.currentIdOfText);
     const wordsPerSecond = this.state.number / 60;
     const resultForSetInterval = 1000 / wordsPerSecond;
 
@@ -84,6 +87,7 @@ class SpeedReader extends React.Component {
     if (this.props.currentIndexOfWord + 1 !== this.props.text.length) {
       this.props.showNextWord();
     } else {
+      this.props.endTextSession(this.props.currentIdOfText, this.props.currentIdOfSession);
       clearInterval(this.state.interval);
     }
   };
@@ -289,12 +293,21 @@ SpeedReader.propTypes = {
 const mapStateToProps = state => ({
   currentWord: state.texts.currentWord,
   text: state.texts.text,
-  currentIndexOfWord: state.texts.currentIndexOfWord
+  currentIndexOfWord: state.texts.currentIndexOfWord,
+  currentIdOfText: state.texts.currentIdOfText,
+  currentIdOfSession: state.texts.currentIdOfSession
 });
 
 export default connect(
   mapStateToProps,
-  { showNextWord, createText, getOneText, deleteText }
+  {
+    showNextWord,
+    createText,
+    getOneText,
+    deleteText,
+    startTextSession,
+    endTextSession
+  }
 )(withStyles(styles)(SpeedReader));
 
 //////////////// MAKE COMPONENT OUTSIDE
