@@ -65,6 +65,7 @@ class SpeedReader extends React.Component {
       textColor: "white",
       interval: null,
       succesMessage: false,
+      infoMessage: false,
       text: "",
       name: ""
     };
@@ -121,7 +122,7 @@ class SpeedReader extends React.Component {
       return;
     }
 
-    this.setState({ succesMessage: false });
+    this.setState({ succesMessage: false, infoMessage: false });
   };
 
   render() {
@@ -252,6 +253,21 @@ class SpeedReader extends React.Component {
             message={"Your action was successful"}
           />
         </Snackbar>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right"
+          }}
+          open={this.state.infoMessage}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+        >
+          <MySnackbarContentWrapper
+            variant="info"
+            className={classes.margin}
+            message="This is an information message!"
+          />
+        </Snackbar>
       </StyledSpeedReader>
     );
   }
@@ -272,6 +288,11 @@ export default connect(
   { showNextWord, createText, getOneText, deleteText }
 )(withStyles(styles)(SpeedReader));
 
+
+
+
+
+//////////////// MAKE COMPONENT OUTSIDE 
 const variantIcon = {
   success: CheckCircleIcon,
   warning: WarningIcon,
@@ -334,76 +355,3 @@ function MySnackbarContentWrapper(props) {
     />
   );
 }
-
-// MySnackbarContentWrapper.propTypes = {
-//   className: PropTypes.string,
-//   message: PropTypes.string,
-//   onClose: PropTypes.func,
-//   variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
-// };
-
-// const useStyles2 = makeStyles(theme => ({
-//   margin: {
-//     margin: theme.spacing(1),
-//   },
-// }));
-
-// export default function CustomizedSnackbars() {
-//   const classes = useStyles2();
-//   const [open, setOpen] = React.useState(false);
-
-//   const handleClick = () => {
-//     setOpen(true);
-//   };
-
-//   const handleClose = (event, reason) => {
-//     if (reason === 'clickaway') {
-//       return;
-//     }
-
-//     setOpen(false);
-//   };
-
-//   return (
-//     <div>
-//       <Button variant="outlined" className={classes.margin} onClick={handleClick}>
-//         Open success snackbar
-//       </Button>
-//       <Snackbar
-//         anchorOrigin={{
-//           vertical: 'bottom',
-//           horizontal: 'left',
-//         }}
-//         open={open}
-//         autoHideDuration={6000}
-//         onClose={handleClose}
-//       >
-//         <MySnackbarContentWrapper
-//           onClose={handleClose}
-//           variant="success"
-//           message="This is a success message!"
-//         />
-//       </Snackbar>
-//       <MySnackbarContentWrapper
-//         variant="error"
-//         className={classes.margin}
-//         message="This is an error message!"
-//       />
-//       <MySnackbarContentWrapper
-//         variant="warning"
-//         className={classes.margin}
-//         message="This is a warning message!"
-//       />
-//       <MySnackbarContentWrapper
-//         variant="info"
-//         className={classes.margin}
-//         message="This is an information message!"
-//       />
-//       <MySnackbarContentWrapper
-//         variant="success"
-//         className={classes.margin}
-//         message="This is a success message!"
-//       />
-//     </div>
-//   );
-// }
