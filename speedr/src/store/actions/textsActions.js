@@ -14,12 +14,13 @@ export const genericAction = (type, payload) => ({
   payload
 });
 
+export const getTexts = () => dispatch => {
 const userId = localStorage.getItem("userId");
 
-export const getTexts = () => dispatch => {
   axios
     .get(`${appURL}/texts/${userId}`)
     .then(response => {
+      debugger;
       dispatch(genericAction(GET_TEXTS, response.data));
     })
     .catch(error => {
@@ -57,10 +58,14 @@ export const createText = (name, text) => dispatch => {
     date
   };
 
+  const userId = localStorage.getItem("userId");
+
   axios
     .post(`${appURL}/texts`, textBody)
     .then(response => {
+      debugger;
       return axios.get(`${appURL}/texts/${userId}`).then(response => {
+        debugger;
         dispatch(genericAction(GET_TEXTS, response.data));
       });
       // dispatch(genericAction(LOGIN, userId));
@@ -71,9 +76,11 @@ export const createText = (name, text) => dispatch => {
 };
 
 export const getOneText = textId => dispatch => {
+
   axios
     .get(`${appURL}/texts/text/${textId}`)
     .then(response => {
+      debugger;
       dispatch(genericAction(GET_TEXT, response.data.text));
     })
     .catch(error => {
@@ -82,10 +89,14 @@ export const getOneText = textId => dispatch => {
 };
 
 export const deleteText = textId => dispatch => {
+const userId = localStorage.getItem("userId");
+
   axios
     .delete(`${appURL}/texts/text/${textId}`)
     .then(response => {
+      debugger;
       return axios.get(`${appURL}/texts/${userId}`).then(response => {
+        debugger;
         dispatch(genericAction(GET_TEXTS, response.data));
       });
     })

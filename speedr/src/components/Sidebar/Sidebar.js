@@ -25,7 +25,7 @@ export default function Sidebar(props) {
   function activeRoute(routeName) {
     return window.location.href.indexOf(routeName) > -1 ? true : false;
   }
-  const { color, logo, image, logoText, routes } = props;
+  const { color, logo, image, routes, username } = props;
   var links = (
     <List className={classes.list}>
       {routes.map((prop, key) => {
@@ -81,7 +81,10 @@ export default function Sidebar(props) {
     </List>
   );
   var brand = (
-    <div className={classes.logo}>
+    <div 
+    className={classes.logo}
+    //  style={{display: "flex", flexDirection: "column"}}
+     >
       <a
         href="https://www.creative-tim.com?ref=mdr-sidebar"
         className={classNames(classes.logoLink, {
@@ -89,10 +92,12 @@ export default function Sidebar(props) {
         })}
         target="_blank"
       >
-        <div className={classes.logoImage}>
-          <img src={logo} alt="logo" className={classes.img} />
+        <div className={classes.logoImage} style={{display: "flex", flexDirection: "column"}}>
+          <img 
+          // style={{borderRadius: "50%", }}
+           src={logo} alt="logo" className={classes.img} />
         </div>
-        {"Speedr"}
+        {username}
       </a>
     </div>
   );

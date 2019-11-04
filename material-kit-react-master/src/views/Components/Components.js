@@ -64,13 +64,13 @@ export default function Components(props) {
       </Parallax>
 
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <SectionBasics />
+        {/* <SectionBasics /> */}
         <SectionNavbars />
-        <SectionTabs />
-        <SectionPills />
-        <SectionNotifications />
-        <SectionTypography />
-        <SectionJavascript />
+        {/* <SectionTabs /> */}
+        {/* <SectionPills /> */}
+        {/* <SectionNotifications /> */}
+        {/* <SectionTypography /> */}
+        {/* <SectionJavascript /> */}
         <SectionCarousel />
         <SectionCompletedExamples />
         <SectionLogin />
@@ -81,7 +81,7 @@ export default function Components(props) {
             </Button>
           </Link>
         </GridItem>
-        <SectionExamples />
+        {/* <SectionExamples /> */}
         <SectionDownload />
       </div>
       <Footer />

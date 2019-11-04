@@ -14,8 +14,7 @@ import routes from "routes.js";
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 
-import bgImage from "assets/img/sidebar-2.jpg";
-import logo from "assets/img/reactlogo.png";
+// import bgImage from "assets/img/sidebar-2.jpg";
 
 let ps;
 
@@ -45,8 +44,8 @@ export default function Admin({ ...rest }) {
   // ref to help us initialize PerfectScrollbar on windows devices
   const mainPanel = React.createRef();
   // states and functions
-  const [image, setImage] = React.useState(bgImage);
-  const [color, setColor] = React.useState("blue");
+  // const [image, setImage] = React.useState(bgImage);
+  // const [color, setColor] = React.useState("blue");
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -80,13 +79,13 @@ export default function Admin({ ...rest }) {
   return (
     <div className={classes.wrapper}>
       <Sidebar
+        username={localStorage.getItem("username")}
         routes={routes}
-        logoText={"Creative Tim"}
-        logo={logo}
-        image={image} // change image 
+        logo={"https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"}
+        image={"https://images.pexels.com/photos/1148399/pexels-photo-1148399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"} // change image 
         handleDrawerToggle={handleDrawerToggle}
         open={mobileOpen}
-        color={color} //change color
+        color={"blue"} //change color
         {...rest}
       />
       <div className={classes.mainPanel} ref={mainPanel}>

@@ -61,27 +61,34 @@ const sidebarStyle = theme => ({
     }
   },
   logo: {
+    width: "100%",
+    margin: "0 auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "200px",
     position: "relative",
-    padding: "15px 15px",
+    // padding: "15px 15px",
     zIndex: "4",
-    "&:after": {
-      content: '""',
-      position: "absolute",
-      bottom: "0",
+    // "&:after": {
+    //   content: '""',
+    //   position: "absolute",
+    //   bottom: "0",
 
-      height: "1px",
-      right: "15px",
-      width: "calc(100% - 30px)",
-      backgroundColor: "rgba(" + hexToRgb(grayColor[6]) + ", 0.3)"
-    }
+    //   height: "1px",
+    //   right: "15px",
+    //   width: "calc(100% - 30px)",
+    //   backgroundColor: "rgba(" + hexToRgb(grayColor[6]) + ", 0.3)"
+    // }
   },
   logoLink: {
     ...defaultFont,
     textTransform: "uppercase",
-    padding: "5px 0",
-    display: "block",
+    // padding: "5px 0",
+    // display: "block",
     fontSize: "18px",
-    textAlign: "left",
+    textAlign: "center",
     fontWeight: "400",
     lineHeight: "30px",
     textDecoration: "none",
@@ -91,21 +98,28 @@ const sidebarStyle = theme => ({
     }
   },
   logoLinkRTL: {
-    textAlign: "right"
+    // textAlign: "right"
   },
   logoImage: {
-    width: "30px",
-    display: "inline-block",
-    maxHeight: "30px",
-    marginLeft: "10px",
-    marginRight: "15px"
+    width: "100%",
+    borderRadius: "50%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "10px 0",
+    // display: "inline-block",
+    // maxHeight: "30px",
+    // marginLeft: "10px",
+    // marginRight: "15px"
   },
   img: {
-    width: "35px",
-    top: "22px",
-    position: "absolute",
-    verticalAlign: "middle",
-    border: "0"
+    width: "80%",
+    borderRadius: "50%",
+    // top: "22px",
+    // position: "absolute",
+    // verticalAlign: "middle",
+    // border: "0"
   },
   background: {
     position: "absolute",

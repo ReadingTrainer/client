@@ -18,6 +18,7 @@
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
+import Book from "@material-ui/icons/Book";
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
@@ -41,7 +42,7 @@ const dashboardRoutes = [
   {
     path: "/speedreader",
     name: "Speed Reader",
-    icon: Person,
+    icon: Book,
     component: SpeedReader,
     layout: "/admin"
   }

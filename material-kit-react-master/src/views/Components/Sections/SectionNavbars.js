@@ -29,8 +29,8 @@ export default function SectionNavbars() {
   const classes = useStyles();
   return (
     <div className={classes.section}>
-      <div className={classes.container}>
-        <GridContainer>
+      {/* <div className={classes.container}> */}
+      {/* <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
             <div className={classes.title}>
               <h3>Menu</h3>
@@ -127,17 +127,17 @@ export default function SectionNavbars() {
               }
             />
           </GridItem>
-        </GridContainer>
-        <div className={classes.title}>
+        </GridContainer> */}
+      {/* <div className={classes.title}>
           <h3>Navigation</h3>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
       <div id="navbar" className={classes.navbar}>
         <div
           className={classes.navigation}
           style={{ backgroundImage: "url(" + image + ")" }}
         >
-          <Header
+          {/* <Header
             brand="Brand"
             color="rose"
             leftLinks={
@@ -261,8 +261,8 @@ export default function SectionNavbars() {
                 </ListItem>
               </List>
             }
-          />
-          <Header
+          /> */}
+          {/* <Header
             brand="Navbar with notifications"
             color="dark"
             rightLinks={
@@ -326,7 +326,7 @@ export default function SectionNavbars() {
                 </ListItem>
               </List>
             }
-          />
+          /> */}
           <Header
             brand="Navbar with profile"
             rightLinks={
@@ -365,7 +365,7 @@ export default function SectionNavbars() {
               </List>
             }
           />
-          <Header
+          {/* <Header
             brand="Transparent"
             color="transparent"
             rightLinks={
@@ -424,9 +424,9 @@ export default function SectionNavbars() {
                     Instagram
                   </Button>
                 </ListItem>
-              </List>
-            }
-          />
+              </List> */}
+          {/* }
+          /> */}
         </div>
       </div>
     </div>

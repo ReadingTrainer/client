@@ -22,10 +22,11 @@ export const doSignIn = (user, history) => dispatch => {
     .post(`${appURL}/auth/login`, user)
     .then(response => {
       debugger
-      const { token, user } = response.data;
+      const { token, userId, username } = response.data;
       dispatch(genericAction(LOGIN, user));
       localStorage.setItem("token", token);
-      localStorage.setItem("userId", user);
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("username", username);
       history.push("/admin");
     })
     .catch(error => {
@@ -42,10 +43,11 @@ export const doSignUp = (user, history) => dispatch => {
     .post(`${appURL}/auth/signup`, user)
     .then(response => {
       debugger
-      const { token, user } = response.data;
+      const { token, user, username } = response.data;
       dispatch(genericAction(LOGIN, user));
       localStorage.setItem("token", token);
       localStorage.setItem("userId", user);
+      localStorage.setItem("username", username);
       history.push("/admin");
     })
     .catch(error => {
