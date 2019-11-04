@@ -48,6 +48,7 @@ export default function Components(props) {
         }}
         {...rest}
       />
+      {/* <SectionNavbars /> */}
       <Parallax image={require("assets/img/bg4.jpg")}>
         <div className={classes.container}>
           <GridContainer>
@@ -65,7 +66,6 @@ export default function Components(props) {
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         {/* <SectionBasics /> */}
-        <SectionNavbars />
         {/* <SectionTabs /> */}
         {/* <SectionPills /> */}
         {/* <SectionNotifications /> */}
