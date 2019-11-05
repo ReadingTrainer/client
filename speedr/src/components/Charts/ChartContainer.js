@@ -1,7 +1,7 @@
 import React from "react";
 import WeeklyChart from "./WeeklyChart";
 import MonthlyChart from "./MonthlyChart";
-import YearlyChart from "./YearlyChart
+import YearlyChart from "./YearlyChart";
 import styled from "styled-components";
 import { fetchTextsHistory } from "../../store/actions/historyActions";
 import { getTexts } from "../../store/actions/textsActions";
@@ -135,9 +135,11 @@ class ChartContainer extends React.Component {
   componentDidMount = () => {
     this.props.getTexts();
     this.props.fetchTextsHistory();
-    this.props.calculateWeeklyChart(this.props.history, this.props.texts);
-    this.props.calculateMonthlyChart(this.props.history, this.props.texts);
-    this.props.calculateYearlyChart(this.props.history, this.props.texts);
+    setTimeout(() => {
+      this.props.calculateWeeklyChart(this.props.history, this.props.texts);
+      this.props.calculateMonthlyChart(this.props.history, this.props.texts);
+      this.props.calculateYearlyChart(this.props.history, this.props.texts);
+    }, 2000)
   };
 
   render() {
@@ -159,7 +161,7 @@ class ChartContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     history: state.history.history,
-    workouts: state.workouts.workouts,
+    texts: state.texts.texts,
   };
 };
 
