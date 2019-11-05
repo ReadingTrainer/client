@@ -32,7 +32,21 @@ import { makeStyles } from "@material-ui/core/styles";
 //// END NEW ADDED
 import styled from "styled-components";
 
-const StyledSpeedReader = styled.div``;
+const StyledSpeedReader = styled.div`
+
+.speed-card {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.speed-display {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+`;
 
 const styles = theme => ({
   card: {
@@ -59,7 +73,7 @@ class SpeedReader extends React.Component {
     super(props);
     this.state = {
       expanded: false,
-      number: 240,
+      wordsPerMinute: 200,
       textBackgroundColor: "black",
       textFontSize: "",
       textHeight: "",
@@ -72,10 +86,10 @@ class SpeedReader extends React.Component {
       name: ""
     };
   }
-
+// When we make a session we need the speed of reading the session and the length of the text we read
   start = () => {
     this.props.startTextSession(this.props.currentIdOfText);
-    const wordsPerSecond = this.state.number / 60;
+    const wordsPerSecond = this.state.wordsPerMinute / 60;
     const resultForSetInterval = 1000 / wordsPerSecond;
 
     const intervalVariable = setInterval(this.timer, resultForSetInterval);
@@ -153,8 +167,9 @@ class SpeedReader extends React.Component {
     };
     return (
       <StyledSpeedReader>
-        <Card className={classes.card}>
-          <CardContent style={styleTextSection}>
+        <Card className="speed-card"
+        >
+          <CardContent className="speed-display" style={styleTextSection}>
             <div className="word-section">
               <h1 className="text">
                 {this.props.currentWord
@@ -186,11 +201,11 @@ class SpeedReader extends React.Component {
               <div className="row">
                 <p>Words per minute</p>
                 <input
-                  type="number"
-                  name="number"
-                  value={this.state.number}
+                  type="wordsPerMinute"
+                  name="wordsPerMinute"
+                  value={this.state.wordsPerMinute}
                   onChange={this.handleChange}
-                  placeholder="number"
+                  placeholder="wordsPerMinute"
                   min="60"
                 />
               </div>
