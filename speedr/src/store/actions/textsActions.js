@@ -22,6 +22,7 @@ export const getTexts = () => dispatch => {
   axios
     .get(`${appURL}/texts/${userId}`)
     .then(response => {
+      debugger
       dispatch(genericAction(GET_TEXTS, response.data));
     })
     .catch(error => {
