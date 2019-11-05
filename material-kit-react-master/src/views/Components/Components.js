@@ -40,7 +40,7 @@ export default function Components(props) {
   return (
     <div>
       <Header
-        brand="Speed Reader"
+        brand="SpeedR"
         rightLinks={<HeaderLinks />}
         fixed
         color="transparent"
@@ -51,12 +51,12 @@ export default function Components(props) {
         {...rest}
       />
       {/* <SectionNavbars /> */}
-      <Parallax image={require('assets/img/bg4.jpg')}>
+      <Parallax image={require('assets/img/speedr.gif')}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
-                <h2 className={(classes.title, classes.left)}>Spead Reader</h2>
+                <h2 className={(classes.title, classes.left)}>SpeedR</h2>
                 This is a two in one App where users can get both a learning
                 experience and also help in improving your general skills, We
                 include a a free game. Our App is always ivloving with a lot

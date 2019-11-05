@@ -41,7 +41,7 @@ const dashboardRoutes = [
   },
   {
     path: "/speedreader",
-    name: "Speed Reader",
+    name: "SpeedR",
     icon: Book,
     component: SpeedReader,
     layout: "/admin"
