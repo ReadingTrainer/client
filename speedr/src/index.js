@@ -27,10 +27,11 @@ import rootReducer from "./store/reducers";
 
 // core components
 import Admin from "layouts/Admin.js";
-import SignIn from "layouts/SignIn";
-import SignUp from "layouts/SignUp.js";
+// import SignIn from "layouts/SignIn";
+// import SignUp from "layouts/SignUp.js";
 import Components from "layouts/Landingpage/views/Components/Components";
 import Login from "layouts/Landingpage/views/LoginPage/LoginPage";
+import SignUp from "layouts/Landingpage/views/RegisterPage/RegisterPage";
 
 import "assets/css/material-dashboard-react.css?v=1.8.0";
 

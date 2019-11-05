@@ -13,17 +13,22 @@ import CardFooter from "../../components/Card/CardFooter.js";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { doSignIn } from "../../../../store/actions/authenticationActions";
+import { doSignUp } from "../../../../store/actions/authenticationActions";
 import TextField from "@material-ui/core/TextField";
 
 import styles from "../../assets/jss/material-kit-react/views/loginPage.js";
 
 import image from "../../assets/img/bg7.jpg";
 
-class LoginPage extends React.Component {
+class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cardAnimaton: "cardHidden", email: "", password: "" };
+    this.state = {
+      cardAnimaton: "cardHidden",
+      username: "",
+      email: "",
+      password: ""
+    };
   }
 
   componentDidMount = () => {
@@ -36,18 +41,20 @@ class LoginPage extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(e)
+    console.log(e);
   };
 
-  signIn = () => {
-    const user = {
+  signUp = () => {
+    const newUser = {
+      username: this.state.username,
       email: this.state.email,
       password: this.state.password
     };
 
-    this.props.doSignIn(user, this.props.history);
+    this.props.doSignUp(newUser, this.props.history);
 
     this.setState({
+      username: "",
       email: "",
       password: ""
     });
@@ -111,7 +118,7 @@ class LoginPage extends React.Component {
                     </CardHeader>
                     <p className={classes.divider}>Or Be Classical</p>
                     <CardBody>
-                      <TextField
+                    <TextField
               variant="outlined"
               margin="normal"
               required
@@ -122,7 +129,20 @@ class LoginPage extends React.Component {
               autoComplete="email"
               autoFocus
               value={this.state.email}
-              onChange={e => this.handleChange(e)}
+              onChange={this.handleChange}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="username"
+              label="username"
+              type="text"
+              id="username"
+              autoComplete="username"
+              value={this.state.username}
+              onChange={this.handleChange}
             />
             <TextField
               variant="outlined"
@@ -139,7 +159,12 @@ class LoginPage extends React.Component {
             />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button onClick={this.signIn} simple color="primary" size="lg">
+                      <Button
+                        onClick={this.signUp}
+                        simple
+                        color="primary"
+                        size="lg"
+                      >
                         Get started
                       </Button>
                     </CardFooter>
@@ -155,7 +180,7 @@ class LoginPage extends React.Component {
   }
 }
 
-LoginPage.propTypes = {
+RegisterPage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
@@ -166,5 +191,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { doSignIn }
-)(withStyles(styles)(LoginPage));
+  { doSignUp }
+)(withStyles(styles)(RegisterPage));
