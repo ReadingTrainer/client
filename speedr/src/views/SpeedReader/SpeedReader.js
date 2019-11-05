@@ -88,7 +88,7 @@ class SpeedReader extends React.Component {
   }
 // When we make a session we need the speed of reading the session and the length of the text we read
   start = () => {
-    this.props.startTextSession(this.props.currentIdOfText);
+    this.props.startTextSession(this.props.currentIdOfText, this.state.wordsPerMinute);
     const wordsPerSecond = this.state.wordsPerMinute / 60;
     const resultForSetInterval = 1000 / wordsPerSecond;
 
@@ -108,6 +108,7 @@ class SpeedReader extends React.Component {
 
   pause = () => {
     clearInterval(this.state.interval);
+    this.props.endTextSession(this.props.currentIdOfText, this.props.currentIdOfSession);
   };
 
   handleChange = e => {

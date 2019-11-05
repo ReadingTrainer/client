@@ -22,7 +22,6 @@ export const getTexts = () => dispatch => {
   axios
     .get(`${appURL}/texts/${userId}`)
     .then(response => {
-      debugger
       dispatch(genericAction(GET_TEXTS, response.data));
     })
     .catch(error => {
@@ -105,13 +104,11 @@ export const showNextWord = () => {
   return genericAction(SHOW_NEXT_WORD);
 };
 
-export const startTextSession = textId => dispatch => {
+export const startTextSession = (textId, wordsPerMinute) => dispatch => {
   const userId = localStorage.getItem("userId");
   
-  axiosWithAuth().post(`${appURL}/texts/${textId}/start`, { userId })
+  axiosWithAuth().post(`${appURL}/texts/${textId}/start`, { userId, wordsPerMinute })
     .then(response => {
-      debugger
-      debugger
       dispatch(genericAction(START_TEXT_SESSION, response.data.sessionId));
     })
     .catch(error => {
@@ -120,13 +117,10 @@ export const startTextSession = textId => dispatch => {
 };
 
 export const endTextSession = (textId, session_id) => dispatch => {
-  debugger
   const userId = localStorage.getItem("userId");
   
   axiosWithAuth().post(`${appURL}/texts/${textId}/end`, {session_id})
     .then(response => {
-      debugger
-      // dispatch(genericAction(GET_TEXTS, response.data));
       return axiosWithAuth().get(`${appURL}/texts/history/${userId}`).then(res => {
         debugger
       })
