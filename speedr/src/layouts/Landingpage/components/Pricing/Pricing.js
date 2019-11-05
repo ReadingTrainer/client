@@ -212,28 +212,33 @@ export default function Pricing() {
                   <ul>
                     {tier.description.map(line => (
                       <div
-                        style={{fontSize: "15px", display: "flex", alignItems: "center", padding: "10px 0"}}
-                      >
-                      <i
-                      className="material-icons"
-                      style={{
-                        color: "white",
-                        borderRadius: "50%",
-                        backgroundColor: "green",
-                        marginRight: "15px"
-                      }}
-                    >
-                      check
-                    </i>
-                      <Typography
-                        component="li"
-                        variant="subtitle1"
-                        align="left"
                         key={line}
+                        style={{
+                          fontSize: "15px",
+                          display: "flex",
+                          alignItems: "center",
+                          padding: "10px 0"
+                        }}
                       >
-                        {" "}
-                        {line}
-                      </Typography>
+                        <i
+                          className="material-icons"
+                          style={{
+                            color: "white",
+                            borderRadius: "50%",
+                            backgroundColor: "green",
+                            marginRight: "15px"
+                          }}
+                        >
+                          check
+                        </i>
+                        <Typography
+                          component="li"
+                          variant="subtitle1"
+                          align="left"
+                        >
+                          {" "}
+                          {line}
+                        </Typography>
                       </div>
                     ))}
                   </ul>

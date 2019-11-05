@@ -10,41 +10,61 @@ import GridContainer from "../../../components/Grid/GridContainer.js";
 import GridItem from "../../../components/Grid/GridItem.js";
 import Card from "../../../components/Card/Card.js";
 
-import image1 from "../../../assets/img/bg.jpg";
-import image2 from "../../../assets/img/bg2.jpg";
-import image3 from "../../../assets/img/bg3.jpg";
+// import image1 from "../../../assets/img/bg.jpg";
+// import image2 from "../../../assets/img/bg2.jpg";
+// import image3 from "../../../assets/img/bg3.jpg";
+import image1 from "./george.jpg";
+import image2 from "./john.jpg";
+import image3 from "./jimmy.jpg";
+import image4 from "./abraham.jpg";
+import image5 from "./harvard.jpg";
+import image6 from "./cambridge.jpg";
+import styled from "styled-components";
 
 import styles from "../../../assets/jss/material-kit-react/views/componentsSections/carouselStyle.js";
 
 const useStyles = makeStyles(styles);
 
+const StyledSectionCaroussel = styled.div`
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.picture {
+  height: 300px;
+  width: 80%;
+}
+`; 
+
 export default function SectionCarousel() {
   const classes = useStyles();
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false
+    autoplay: true
   };
   return (
-    <div className={classes.section}>
+    <StyledSectionCaroussel className={classes.section}>
       <div className={classes.container}>
         <GridContainer>
           <GridItem xs={12} sm={12} md={8} className={classes.marginAuto}>
             <Card carousel>
               <Carousel {...settings}>
-                <div>
+                <div className="picture">
                   <img src={image1} alt="First slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <LocationOn className="slick-icons" />
-                      Yellowstone National Park, United States
+                      George Washington, United States
                     </h4>
                   </div>
                 </div>
-                <div>
+                <div className="picture">
                   <img
                     src={image2}
                     alt="Second slide"
@@ -53,16 +73,42 @@ export default function SectionCarousel() {
                   <div className="slick-caption">
                     <h4>
                       <LocationOn className="slick-icons" />
-                      Somewhere Beyond, United States
+                      President John F. Kennedy, United States
                     </h4>
                   </div>
                 </div>
-                <div>
+                <div className="picture">
                   <img src={image3} alt="Third slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <LocationOn className="slick-icons" />
-                      Yellowstone National Park, United States
+                      President Jimmy Carter, United States
+                    </h4>
+                  </div>
+                </div>
+                <div className="picture">
+                  <img src={image4} alt="First slide" className="slick-image" />
+                  <div className="slick-caption">
+                    <h4>
+                      <LocationOn className="slick-icons" />
+                      Abraham Lincoln, United States
+                    </h4>
+                  </div>
+                </div>
+                <div className="picture">
+                  <img src={image5} alt="First slide" className="slick-image" />
+                  <div className="slick-caption">
+                    <h4>
+                      <LocationOn className="slick-icons" />
+                      Harvard University, United States
+                    </h4>
+                  </div>
+                </div><div className="picture">
+                  <img src={image6} alt="First slide" className="slick-image" />
+                  <div className="slick-caption">
+                    <h4>
+                      <LocationOn className="slick-icons" />
+                      Cambridge University, England
                     </h4>
                   </div>
                 </div>
@@ -71,6 +117,6 @@ export default function SectionCarousel() {
           </GridItem>
         </GridContainer>
       </div>
-    </div>
+    </StyledSectionCaroussel>
   );
 }
