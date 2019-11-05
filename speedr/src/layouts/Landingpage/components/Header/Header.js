@@ -71,7 +71,7 @@ export default function Header(props) {
               {leftLinks}
             </Hidden>
           ) : (
-            brandComponent
+            <a href="/" style={{textDecoration: "none", color: "white"}}>{brandComponent}</a>
           )}
         </div>
         <Hidden smDown implementation="css">
