@@ -137,6 +137,10 @@ class SpeedReader extends React.Component {
     this.setState({ succesMessage: false, infoMessage: false });
   };
 
+  componentWillUnmount() {
+    this.props.endTextSession(this.props.currentIdOfText, this.props.currentIdOfSession);
+  }
+
   render() {
     const { classes } = this.props;
 

@@ -28,6 +28,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardIcon from "components/Card/CardIcon.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
+import ChartContainer from "../../components/Charts/ChartContainer";
 
 import { bugs, website, server } from "variables/general.js";
 
@@ -195,6 +196,7 @@ export default function Dashboard() {
           </Card>
         </GridItem>
       </GridContainer>
+      <ChartContainer/>
       {/* <GridContainer>
         <GridItem xs={12} sm={12} md={6}>
           <CustomTabs

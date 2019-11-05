@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import authentication from "./authentication";
+import history from "./history";
 import texts from "./texts";
 
 const appReducer = combineReducers({
   authentication,
-  texts
+  texts,
+  history
 });
 
 const rootReducer = (state, action) => {
