@@ -38,9 +38,8 @@ export default function HeaderLinks(props) {
 
       <ListItem className={classes.listItem}>
         <Button
-          href="#pablo"
+          href="/login"
           className={classes.registerNavLink}
-          onClick={e => e.preventDefault()}
           color="rose"
           round
         >

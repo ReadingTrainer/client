@@ -30,6 +30,7 @@ import Admin from "layouts/Admin.js";
 import SignIn from "layouts/SignIn";
 import SignUp from "layouts/SignUp.js";
 import Components from "layouts/Landingpage/views/Components/Components";
+import Login from "layouts/Landingpage/views/LoginPage/LoginPage";
 
 import "assets/css/material-dashboard-react.css?v=1.8.0";
 
@@ -41,7 +42,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={hist}>
       <Switch>
-        <Route path="/sign_in" component={SignIn} />
+        <Route path="/login" component={Login} />
         <Route path="/sign_up" component={SignUp} />
         <Route path="/admin" component={Admin} />
         <Route path="/" component={Components} />        
