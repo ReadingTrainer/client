@@ -27,6 +27,7 @@ import SectionCompletedExamples from "./Sections/SectionCompletedExamples.js";
 // import SectionLogin from "./Sections/SectionLogin.js";
 import SectionExamples from "./Sections/SectionExamples.js";
 import SectionDownload from "./Sections/SectionDownload.js";
+import Pricing from "components/Pricing/Pricing.js";
 
 import styles from "assets/jss/material-kit-react/views/components.js";
 
@@ -51,13 +52,18 @@ export default function Components(props) {
       {/* <SectionNavbars /> */}
       <Parallax image={require("assets/img/bg4.jpg")}>
         <div className={classes.container}>
-          <GridContainer>
+          <GridContainer >
             <GridItem>
               <div className={classes.brand}>
-                <h1 className={classes.title}>Spead Reader</h1>
-                <h3 className={classes.subtitle}>
+                <h2 className={classes.title}>Spead Reader</h2>
+              
                   This is a two in one App where users can get both a learning experience and also help in improving your general skills, We include a a free game. Our App is always ivloving with a lot more ideas to come.
-                </h3>
+               
+              </div>
+            </GridItem>
+            <GridItem>
+              <div className={classes.brand}>
+                  This is a two in one App where users can get both a learning experience and also help in improving your general skills, We include a a free game. Our App is always ivloving with a lot more ideas to come.
               </div>
             </GridItem>
           </GridContainer>
@@ -72,16 +78,8 @@ export default function Components(props) {
         {/* <SectionTypography /> */}
         {/* <SectionJavascript /> */}
         <SectionCarousel />
+        <Pricing />
         <SectionCompletedExamples />
-        {/* <SectionLogin /> */}
-        <GridItem md={12} className={classes.textCenter}>
-          <Link to={"/login-page"} className={classes.link}>
-            <Button color="primary" size="lg" simple>
-              View Login Page
-            </Button>
-          </Link>
-        </GridItem>
-        {/* <SectionExamples /> */}
         <SectionDownload />
       </div>
       <Footer />
