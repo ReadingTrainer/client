@@ -29,6 +29,7 @@ import rootReducer from "./store/reducers";
 import Admin from "layouts/Admin.js";
 import SignIn from "layouts/SignIn";
 import SignUp from "layouts/SignUp.js";
+import Components from "layouts/Landingpage/views/Components/Components";
 
 import "assets/css/material-dashboard-react.css?v=1.8.0";
 
@@ -43,7 +44,8 @@ ReactDOM.render(
         <Route path="/sign_in" component={SignIn} />
         <Route path="/sign_up" component={SignUp} />
         <Route path="/admin" component={Admin} />
-        <Redirect from="/" to="/sign_up" />
+        <Route path="/" component={Components} />        
+        {/* <Redirect from="/" to="/sign_up" /> */}
       </Switch>
     </Router>
   </Provider>,
