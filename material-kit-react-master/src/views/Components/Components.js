@@ -24,7 +24,7 @@ import SectionTypography from "./Sections/SectionTypography.js";
 import SectionJavascript from "./Sections/SectionJavascript.js";
 import SectionCarousel from "./Sections/SectionCarousel.js";
 import SectionCompletedExamples from "./Sections/SectionCompletedExamples.js";
-import SectionLogin from "./Sections/SectionLogin.js";
+// import SectionLogin from "./Sections/SectionLogin.js";
 import SectionExamples from "./Sections/SectionExamples.js";
 import SectionDownload from "./Sections/SectionDownload.js";
 
@@ -38,7 +38,7 @@ export default function Components(props) {
   return (
     <div>
       <Header
-        brand="Material Kit React"
+        brand="Speed Reader"
         rightLinks={<HeaderLinks />}
         fixed
         color="transparent"
@@ -54,9 +54,9 @@ export default function Components(props) {
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
-                <h1 className={classes.title}>Material Kit React.</h1>
+                <h1 className={classes.title}>Spead Reader</h1>
                 <h3 className={classes.subtitle}>
-                  A Badass Material-UI Kit based on Material Design.
+                  This is a two in one App where users can get both a learning experience and also help in improving your general skills, We include a a free game. Our App is always ivloving with a lot more ideas to come.
                 </h3>
               </div>
             </GridItem>
@@ -73,7 +73,7 @@ export default function Components(props) {
         {/* <SectionJavascript /> */}
         <SectionCarousel />
         <SectionCompletedExamples />
-        <SectionLogin />
+        {/* <SectionLogin /> */}
         <GridItem md={12} className={classes.textCenter}>
           <Link to={"/login-page"} className={classes.link}>
             <Button color="primary" size="lg" simple>
