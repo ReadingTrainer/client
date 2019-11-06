@@ -147,13 +147,13 @@ class SectionCaroussel extends React.Component {
     this.state = {  }
   }
 
-  componentDidMount = () => {
-    document.getElementsByClassName("slick-arrow slick-prev").style.display = "none";
-  }
+  // componentDidMount = () => {
+  //   document.getElementsByClassName("slick-arrow slick-prev").style.display = "none";
+  // }
 
   render() { 
     const settings = {
-      // dots: true,
+      dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
@@ -185,7 +185,7 @@ class SectionCaroussel extends React.Component {
           <GridItem xs={12} sm={12} md={8} className={classes.marginAuto}>
             <Card carousel>
               <Carousel {...settings}>
-                <div className="picture">
+                <div className="">
                   <img src={image1} alt="First slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>

@@ -67,8 +67,8 @@
   cursor: hand;
 }
 
-.slick-slider .slick-track,
-.slick-slider .slick-list {
+.slick-track,
+ .slick-list {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
@@ -139,7 +139,7 @@ button.slick-arrow.slick-next {
   line-height: 0;
   position: absolute;
   top: 50%;
-  display: block;
+  display: none;
   // width: 20px;
   height: 100%;
   padding: 0;
@@ -152,7 +152,7 @@ button.slick-arrow.slick-next {
   background: transparent;
   width: 15%;
   z-index: 2;
-  opacity: 0.5;
+  opacity: 0;
 }
 .slick-prev {
   left: 0;
