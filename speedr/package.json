@@ -32,7 +32,7 @@
     "styled-components": "^4.4.1",
     "uuidv4": "^5.0.1",
     "moment": "2.24.0",
-    "node-sass": "4.12.0",
+    "node-sass": "4.13.1",
     "nouislider": "14.0.2",
     "react-datetime": "2.16.3",
     "react-slick": "0.25.2"
